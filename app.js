@@ -1,5 +1,5 @@
-// Arreglo de registros (Estructura de datos estática)
-// Campo clave único definido: 'codigo_sku' (mapeado secuencialmente)
+// Arreglo de registros (Inventario estático)
+// Campo clave único: codigo_sku
 const inventario = [
     { codigo_sku: "HW-001", IdProducto: 1, NombreProducto: "GT Hunter 2014", valor_autito: 3500, imagenUrl: "image_9ee73f.jpg" },
     { codigo_sku: "HW-002", IdProducto: 2, NombreProducto: "Mazda 787B", valor_autito: 4000, imagenUrl: "image_9eea9b.png" },
@@ -18,10 +18,10 @@ const inventario = [
     { codigo_sku: "HW-015", IdProducto: 15, NombreProducto: "Dodge Charger Drift", valor_autito: 4300, imagenUrl: "image_a94fe2.jpg" }
 ];
 
-// Estructura lineal (Lista) para manejar el carrito en memoria volátil
+// Arreglo dinámico para el carrito
 let carrito = [];
 
-// Función para renderizar el inventario en el HTML
+// Función que itera la estructura de datos y la dibuja en pantalla
 function cargarProductos() {
     const contenedor = document.getElementById('lista-productos');
     contenedor.innerHTML = '';
@@ -32,10 +32,10 @@ function cargarProductos() {
         
         tarjeta.innerHTML = `
             <div class="contenedor-imagen">
-                <img src="${auto.imagenUrl}" alt="${auto.NombreProducto}" onerror="this.src='https://via.placeholder.com/220x160?text=Sin+Imagen'">
+                <img src="${auto.imagenUrl}" alt="${auto.NombreProducto}">
             </div>
             <h3>${auto.NombreProducto}</h3>
-            <span class="sku">SKU: ${auto.codigo_sku}</span>
+            <span class="sku">ID: ${auto.codigo_sku}</span>
             <p class="precio">$${auto.valor_autito}</p>
             <button onclick="agregarAlCarrito('${auto.codigo_sku}')">Agregar al Carrito</button>
         `;
@@ -43,7 +43,7 @@ function cargarProductos() {
     });
 }
 
-// Búsqueda del registro usando el campo clave unico (codigo_sku)
+// Búsqueda del elemento a través de la clave principal
 function agregarAlCarrito(skuBuscado) {
     const productoEncontrado = inventario.find(auto => auto.codigo_sku === skuBuscado);
     if (productoEncontrado) {
@@ -52,13 +52,13 @@ function agregarAlCarrito(skuBuscado) {
     }
 }
 
-// Remueve un elemento de la lista usando su índice posicional
+// Eliminar un elemento del arreglo carrito
 function eliminarDelCarrito(index) {
     carrito.splice(index, 1);
     actualizarCarrito();
 }
 
-// Actualiza la interfaz del carrito y calcula el acumulador (Total)
+// Actualizar la vista del carrito
 function actualizarCarrito() {
     const contenedorCarrito = document.getElementById('items-carrito');
     const totalCarrito = document.getElementById('total-carrito');
@@ -75,7 +75,7 @@ function actualizarCarrito() {
             divItem.className = 'item-carrito';
             divItem.innerHTML = `
                 <span>${item.NombreProducto}</span>
-                <div class="item-control">
+                <div>
                     <span>$${item.valor_autito}</span>
                     <button class="btn-eliminar" onclick="eliminarDelCarrito(${index})">X</button>
                 </div>
@@ -83,11 +83,7 @@ function actualizarCarrito() {
             contenedorCarrito.appendChild(divItem);
         });
     }
-
     totalCarrito.innerText = total;
 }
 
-// Inicialización al cargar la ventana
-window.onload = cargarProductos;
-// Inicializar la página
 window.onload = cargarProductos;
