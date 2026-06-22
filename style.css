@@ -1,0 +1,161 @@
+/* Variables de color de la marca */
+:root {
+    --negro: #111111;
+    --rojo: #E3000F;
+    --naranja: #FF6B00;
+    --amarillo: #FFD700;
+    --blanco: #FFFFFF;
+    --gris-oscuro: #222222;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--negro);
+    color: var(--blanco);
+}
+
+header {
+    background: linear-gradient(90deg, var(--rojo) 0%, var(--naranja) 70%, var(--amarillo) 100%);
+    padding: 20px;
+    text-align: center;
+    border-bottom: 4px solid var(--amarillo);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.contenedor-principal {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 20px auto;
+    gap: 20px;
+    padding: 0 20px;
+}
+
+.catalogo {
+    flex: 2;
+    min-width: 300px;
+}
+
+.catalogo h2 {
+    color: var(--amarillo);
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--rojo);
+    padding-bottom: 10px;
+}
+
+.grid-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.tarjeta-producto {
+    background-color: var(--gris-oscuro);
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid var(--naranja);
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.tarjeta-producto:hover {
+    transform: translateY(-5px);
+    border-left-color: var(--amarillo);
+}
+
+.tarjeta-producto h3 {
+    color: var(--blanco);
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.sku {
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.precio {
+    color: var(--amarillo);
+    font-weight: bold;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+}
+
+button {
+    background-color: var(--rojo);
+    color: var(--blanco);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: var(--naranja);
+}
+
+.panel-carrito {
+    flex: 1;
+    min-width: 250px;
+    background-color: var(--gris-oscuro);
+    padding: 20px;
+    border-radius: 8px;
+    border-top: 4px solid var(--amarillo);
+    height: fit-content;
+}
+
+.panel-carrito h2 {
+    color: var(--naranja);
+    margin-bottom: 15px;
+}
+
+.item-carrito {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #444;
+}
+
+.total {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid var(--rojo);
+}
+
+.total h3 {
+    color: var(--amarillo);
+    margin-bottom: 15px;
+}
+
+.btn-comprar {
+    background-color: var(--naranja);
+    font-size: 1.1rem;
+}
+
+.btn-comprar:hover {
+    background-color: var(--amarillo);
+    color: var(--negro);
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    margin-top: 40px;
+    border-top: 1px solid #333;
+}
